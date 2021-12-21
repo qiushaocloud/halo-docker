@@ -1,0 +1,18 @@
+version: '3'
+services:
+  qiushaocloud-halo-server:
+    restart: always
+    image: halohub/halo
+    container_name: qiushaocloud-halo-server
+    ports:
+      - $HALO_PORT:$VIRTUAL_PORT
+    environment:
+      - VIRTUAL_PORT=$VIRTUAL_PORT
+      - VIRTUAL_HOST=$VIRTUAL_HOST
+      - LETSENCRYPT_HOST=$LETSENCRYPT_HOST
+      - LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL
+      - MAX_UPLOAD_SIZE=10m
+      - JVM_XMS=256m
+      - JVM_XMX=256m
+    volumes:
+      - $HALO_DATA_PATH:/root/.halo
