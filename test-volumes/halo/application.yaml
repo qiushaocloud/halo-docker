@@ -1,36 +1,33 @@
 server:
   port: 8090
-
   # Response data gzip.
   compression:
     enabled: false
+
 spring:
   datasource:
+    # H2 database configuration. 使用 mysql 需要注释掉
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:~/.halo/db/halo
+    username: admin
+    password: YOU_H2_PWD
 
-    # H2 database configuration.
-    #driver-class-name: org.h2.Driver
-    #url: jdbc:h2:file:~/.halo/db/halo
-    #username: admin
-    #password: YOU_H2_PWD
+    # MySQL database configuration.  注意：使用 mysql 请创建表 halodb (CREATE DATABASE `halodb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci)
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    #username: root
+    #password: YOU_MYSQL_PWD
 
-    # MySQL database configuration.
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: YOU_MYSQL_PWD
-
-  # H2 database console configuration.
-  #h2:
-  #  console:
-  #    settings:
-  #      web-allow-others: false
-  #    path: /h2-console
-  #    enabled: false
+  # H2 database console configuration. 使用 mysql 需要注释掉
+  h2:
+    console:
+      settings:
+        web-allow-others: false
+      path: /h2-console
+      enabled: false
 
 halo:
-
   # Your admin client path is https://your-domain/{admin-path}
-  admin-path: qiushaocloud-admin
-
+  admin-path: admin
   # memory or level
   cache: memory
