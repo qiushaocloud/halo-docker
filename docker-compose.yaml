@@ -1,18 +1,20 @@
 version: '3'
 services:
-  qiushaocloud-halo-server:
+  qiushaocloud-halo2-server:
     restart: always
-    image: halohub/halo:1.6.0
-    container_name: qiushaocloud-halo-server
+    image: halohub/halo:2.14
+    container_name: qiushaocloud-halo2-server
     ports:
-      - $HALO_PORT:$VIRTUAL_PORT
-    environment:
-      - VIRTUAL_PORT=$VIRTUAL_PORT
-      - VIRTUAL_HOST=$VIRTUAL_HOST
-      - LETSENCRYPT_HOST=$LETSENCRYPT_HOST
-      - LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL
-      - MAX_UPLOAD_SIZE=10m
-      - JVM_XMS=256m
-      - JVM_XMX=256m
+      - $HALO2_PORT:$VIRTUAL_PORT
     volumes:
-      - $HALO_DATA_PATH:/root/.halo
+      - $HALO2_DATA_PATH:/root/.halo2
+    command:
+      # 修改为自己已有的 MySQL 配置
+      - --spring.r2dbc.url=$R2DBC_URL
+      - --spring.r2dbc.username=$R2DBC_USERNAME
+      - --spring.r2dbc.password=$R2DBC_PASSWORD
+      - --spring.sql.init.platform=$R2DBC_PLATFORM
+      # 外部访问地址，请根据实际需要修改
+      - --halo.external-url=$HALO2_EXTERNAL_URL
+      # 端口号 默认8090
+      - --server.port=$VIRTUAL_PORT

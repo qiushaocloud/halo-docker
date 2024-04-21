@@ -1,1 +1,1 @@
-docker exec -it qiushaocloud-halo-server bash
+docker exec -it qiushaocloud-halo2-server bash

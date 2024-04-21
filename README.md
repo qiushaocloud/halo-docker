@@ -1,13 +1,13 @@
-# halo-docker
+# halo2-docker
 
 #### 介绍
-这是一个 halo docker ，请使用 docker-compose 跑起来，根据自己的需求进行配置，配置信息在 .env 文件配置
+这是一个 halo2 docker ，请使用 docker-compose 跑起来，根据自己的需求进行配置，配置信息在 .env 文件配置
 
 #### 使用说明
 
 1.  配置 .env
 2.  运行 ./run-docker.sh
-3.  查看日志: docker logs qiushaocloud-halo-server
+3.  查看日志: docker logs qiushaocloud-halo2-server
 
 #### 参与贡献
 
